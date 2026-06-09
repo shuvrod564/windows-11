@@ -1,0 +1,73 @@
+:root {
+    --win-bg: #008080; /* Classic Teal Desktop Color */
+    --win-gray: #c0c0c0;
+    --win-light: #ffffff;
+    --win-dark: #808080;
+    --win-darkest: #000000;
+    --win-blue: #000080;
+} 
+body { 
+    font-family: 'Roboto', Tahoma, Arial, sans-serif;
+    image-rendering: pixelated;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}   
+ 
+.start__menu {  
+    border: 1px solid rgba(117, 117, 117, 0.4);
+    border-radius: 7px; 
+}
+
+
+.win__surface { 
+    filter: drop-shadow(0px 32px 64px rgba(0, 0, 0, 0.28)) drop-shadow(0px 2px 21px rgba(0, 0, 0, 0.22));
+    background-color: rgba(255, 255, 255, 0.7);border-radius: 4px;overflow: hidden;
+    backdrop-filter: blur(10px);transition: all .3s ease-in-out;
+}
+.win__surface.minimized {
+    transform: translateY(100%) translateX(-40%) scale(0.5);
+}
+
+.win__menu { 
+    background: rgba(255, 255, 255, 0.7); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0803);
+} 
+ 
+/* Minimize system state */
+.minimized {
+    display: none !important;
+}
+/* Maximized positioning matrix */
+.win-maximized {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 40px !important; /* Leaves room exactly for the 40px taskbar */
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100vh - 40px) !important;
+    transform: none !important;
+}
+
+
+
+/* Prevent transform rendering issues during custom absolute mouse tracking passes */
+.win-outset[id^="win-"] {
+    position: absolute;
+    transform: none !important;
+}
+
+/* Ensure the layout respects the taskbar bottom area when maximized */
+.win-maximized {
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 40px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: calc(100vh - 40px) !important;
+}
+.win-maximized .win__body {  
+    height: calc(100vh - 120px);
+}

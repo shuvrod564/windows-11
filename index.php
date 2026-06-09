@@ -1,27 +1,260 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, shrink-to-fit=no">
+    <title>Windows 95</title>
+    <link rel="shortcut icon" href="https://res.cloudinary.com/disivcuqr/image/upload/v1774776732/sd-logo_nvlz4t.png" type="image/x-icon">
 
-/*----------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See LICENSE in the project root for license information.
- *---------------------------------------------------------------------------------------*/
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script> 
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden text-sm select-none" style="background-image: url('assets/images/windows.png');">
 
-function sayHello($name) {
-	echo "Hello $name!";
-}
+    <main class="flex-grow p-4 md:p-8 flex flex-col items-center justify-center relative">
+        
+        <div class="absolute top-4 left-4 flex flex-col gap-6 z-10">
+            <div onclick="openWindow('win-explorer')" class="flex flex-col items-center cursor-pointer group w-16 hover:bg-white/20 rounded-md" >
+                <img src="assets/images/file-explorer.png" alt="File"
+                    class="w-8 h-8 object-contain"
+                >
+                <span class="text-white text-xs mt-1 text-center">Explorer</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer group w-16 hover:bg-white/20 rounded-md" onclick="openWindow('win-cdplayer')">
+                <img src="assets/images/cd.svg" alt="File"
+                    class="w-10 h-10 object-contain"
+                >
+                <span class="text-white text-xs mt-1 text-center">CD Player</span>
+            </div>
+            <a href="https://github.com/shuvrod564" target="_blank" class="flex flex-col items-center cursor-pointer group w-16 hover:bg-white/20 rounded-md">
+                <div class="w-10 h-10 flex items-center justify-center"><img src="assets/images/github.svg" alt="Github"></div>
+                <span class="text-white text-xs mt-1 text-center">Github</span>
+            </a>
+        </div>
 
-?>
+        <!-- onclick="focusWindow('win-main')" -->
+        <div id="win-main" class="win-outset win__surface w-full max-w-2xl z-20 absolute" >
+            <div data-win-handle class="h-9 px-2 py-1 flex items-center justify-between font-normal cursor-pointer">
+                <div class="flex items-center gap-1">
+                    <span>⚡</span> <span>Big_Desk_Energy.exe</span>
+                </div>
+                <div class="flex gap-1">
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="minimizeWindow('win-main')"><i data-lucide="minus" class="size-3"></i></button>
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="maximizeWindow('win-main')"><i data-lucide="square" class="size-3"></i></button>
+                    <button onclick="closeWindow('win-main')" class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100"><i data-lucide="x" class="size-4"></i></button>
+                </div>
+            </div>
 
-<html>
-	<head>
-		<title>Visual Studio Code Remote :: PHP</title>
-	</head>
-	<body>
-		<?php 
-		
-		sayHello('remote world');
-			
-		phpinfo(); 
-			
-		?>
-	</body>
+            <div class="win__menu flex border-b border-black/10 text-xs">
+                <span class="px-2 py-1.5 text-[10px] tracking-wider cursor-pointer hover:underline hover:!bg-gray-200">File</span>
+                <span class="px-2 py-1.5 text-[10px] tracking-wider cursor-pointer hover:underline hover:!bg-gray-200">Edit</span>
+                <span class="px-2 py-1.5 text-[10px] tracking-wider cursor-pointer hover:underline hover:!bg-gray-200">View</span>
+                <span class="px-2 py-1.5 text-[10px] tracking-wider cursor-pointer hover:underline hover:!bg-gray-200">Help</span>
+            </div>
+
+            <div class="p-6 bg-[#F9F9F9]">
+                <div class="text-center my-4">
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight uppercase text-black mb-2">Big Desk Energy</h1>
+                    <p class="text-gray-500 max-w-md mx-auto text-xs md:text-sm">
+                        Startup insights, raw strategic playbooks, and high-agency operational vibes sent to your inbox every Tuesday.
+                    </p>
+                    <div class="mt-2 text-yellow-600 font-bold text-xs flex items-center justify-center gap-1">
+                        <span>★★★★★</span> <span class="text-gray-600 font-normal">(4.9/5 from 123,539+ readers)</span>
+                    </div>
+                </div>
+
+                <form onsubmit="handleSubscribe(event)" class="win-inset p-4 my-6 border border-gray-100 rounded-sm bg-white shadow-sm flex flex-col md:flex-row gap-2">
+                    <input 
+                        type="email"  
+                        placeholder="C:\Users\YourEmail@domain.com" 
+                        class="flex-grow px-3 py-2 outline-none border border-gray-200 font-mono text-black placeholder-gray-400 text-base rounded-sm"
+                    />
+                    <button type="submit" class="win-outset win-button font-semibold px-6 py-2 border-0 rounded-sm text-black !bg-blue-500">
+                        SUBSCRIBE
+                    </button>
+                </form>
+                <div class="text-red-400 text-xs" id="emailErr"></div>
+
+                <div class="border border-dotted border-gray-300 rounded-sm shadow-sm p-3 flex items-center gap-3 bg-gray-100">
+                    <div class="w-10 h-10 bg-blue-800 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold">SD</div>
+                    <div>
+                        <p class="font-bold text-xs text-black">Written by Shuvro Dev</p>
+                        <p class="text-xs text-gray-600">Fullstack Developer • Laravel • Wordpress • React Js • Next js</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- FILE EXPLORE::WINDOW -->
+        <div id="win-explorer" class="win-outset win__surface w-full max-w-xl absolute hidden z-30">
+            <div data-win-handle class="h-9 px-2 py-1 flex items-center justify-between font-normal cursor-pointer select-none">
+                <div class="flex items-center gap-1">📁 C:\Documents\Archive</div> 
+                <div class="flex gap-1">
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="minimizeWindow('win-explorer')"><i data-lucide="minus" class="size-3"></i></button>
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="maximizeWindow('win-explorer')"><i data-lucide="square" class="size-3"></i></button>
+                    <button onclick="closeWindow('win-explorer')" class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100"><i data-lucide="x" class="size-4"></i></button>
+                </div>
+            </div>
+            <div class="win__body p-4 bg-white min-h-[200px] font-mono text-xs flex flex-col gap-2">
+                <p class="text-gray-400">// Most Popular Content Repositories</p>
+                <?php
+                    $dir = "./assets/md/";
+                    if (is_dir($dir)){
+                        if ($dh = opendir($dir)){
+                            while (($file = readdir($dh)) !== false){
+                                // Skip system dots
+                                if ($file === '.' || $file === '..') {
+                                    continue;
+                                }
+                                
+                                // Construct path relative to root directory
+                                $filePath = $dir . $file;
+                                
+                                // Escape single quotes for HTML and JavaScript attributes safely
+                                $escapedFile = htmlspecialchars($file, ENT_QUOTES, 'UTF-8');
+                                $escapedPath = htmlspecialchars($filePath, ENT_QUOTES, 'UTF-8');
+                                
+                                // FIX: Wrapped JavaScript arguments inside escaped single quotes (\')
+                                echo '<a href="' . $escapedPath . '" onclick="openFileInNotepad(event, \'' . $escapedPath . '\', \'' . $escapedFile . '\')" class="text-blue-800 hover:underline flex justify-between">';
+                                echo '<span>📄 ' . $escapedFile . '</span> <span class="text-gray-400">Strategy</span></a>';
+                            }
+                            closedir($dh);
+                        }
+                    }
+                ?> 
+            </div>
+        </div>
+        <!-- <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'essays_culture.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 essays_culture.md</span> <span class="text-gray-400">Essays</span></a>
+        <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'milestones_log.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 milestones_log.md</span> <span class="text-gray-400">Milestones</span></a> -->
+
+        <!-- NOTEPAD::WINDOW -->
+        <div id="win-notepad" class="win-outset win__surface w-full max-w-xl absolute hidden z-30 flex flex-col">
+            <div data-win-handle class="h-9 px-2 py-1 flex items-center justify-between text-xs font-normal cursor-move bg-gradient-to-r from-blue-900 to-blue-600 text-white font-bold select-none">
+                <div class="flex items-center gap-1">
+                    <span>📝</span> <span id="notepad-title" data-current-file="">Untitled - Notepad</span>
+                </div>
+                <button onclick="closeWindow('win-notepad')" class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white bg-gray-300">X</button>
+            </div>
+            
+            <div class="flex gap-4 px-2 py-1 border-b border-gray-400 text-xs bg-gray-200 text-black select-none">
+                <span class="cursor-pointer hover:underline relative group">
+                    File
+                    <div class="absolute left-0 top-full bg-gray-200 border-2 border-white min-w-[100px] hidden group-hover:block win-outset shadow-xl z-50 py-1">
+                        <div class="px-4 py-1 hover:bg-blue-800 hover:text-white cursor-pointer" onclick="saveFileFromNotepad()">Save</div>
+                    </div>
+                </span>
+                <span class="cursor-pointer hover:underline">Edit</span>
+                <span class="cursor-pointer hover:underline">Search</span>
+                <span class="cursor-pointer hover:underline">Help</span>
+            </div>
+
+            <div class="p-1 bg-gray-300 flex-grow">
+                <textarea 
+                    id="notepad-content" 
+                    class="win-inset w-full h-64 p-2 outline-none font-mono text-xs text-black resize-y overflow-y-auto whitespace-pre-wrap selection:bg-blue-800 selection:text-white"
+                    placeholder="Start typing file buffer structures here..."
+                ></textarea>
+            </div>
+        </div>
+
+        <!-- CD PLAYER -->
+        <div id="win-cdplayer" class="win-outset win__surface w-full max-w-sm absolute hidden z-30">
+            <div data-win-handle class="h-9 pl-2 pr-1 py-1 flex items-center justify-between text-xs font-normal cursor-pointer">
+                <div class="flex items-center gap-1">💿 CD Player</div>
+                
+                <div class="flex gap-1">
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="minimizeWindow('win-cdplayer')"><i data-lucide="minus" class="size-3"></i></button>
+                    <button class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100" onclick="maximizeWindow('win-cdplayer')"><i data-lucide="square" class="size-3"></i></button>
+                    <button onclick="closeWindow('win-cdplayer')" class="win-outset text-black px-1.5 py-0.5 text-xs font-bold leading-none border border-white/10 hover:bg-gray-100"><i data-lucide="x" class="size-4"></i></button>
+                </div>
+            </div>
+            <div class="p-4 bg-gray-200 font-mono text-xs text-center text-black">
+                <audio id="cd-audio-element" src="assets/audios/Lukrembo.mp3" preload="auto"></audio>
+                
+                <div class="win-inset p-2 bg-black text-green-500 font-bold mb-4 text-left flex justify-between items-center">
+                    <span id="cd-track-status">[STOPPED]</span>
+                    <span id="cd-time-display">00:00</span>
+                </div>
+                <div class="flex justify-center gap-2">
+                    <button id="btn-cd-play" class="win-outset win-button w-12 h-12 border-2 border-white/65 rounded-full inline-flex items-center justify-center bg-white/50 text-black/20 transition-all duration-400 hover:shadow hover:bg-white/70 hover:text-black/55" onclick="playCDAudio()" title="Play">
+                        <i data-lucide="play" class="size-4"></i>
+                    </button>
+                    <button id="btn-cd-pause" class="win-outset win-button w-12 h-12 border-2 border-white/65 rounded-full inline-flex items-center justify-center bg-white/50 text-black/20 transition-all duration-400 hover:shadow hover:bg-white/70 hover:text-black/55" onclick="pauseCDAudio()" title="Pause">
+                        <i data-lucide="pause" class="size-4"></i>
+                    </button>
+                    <button id="btn-cd-stop" class="win-outset win-button w-12 h-12 border-2 border-white/65 rounded-full inline-flex items-center justify-center bg-white/50 text-black/20 transition-all duration-400 hover:shadow hover:bg-white/70 hover:text-black/55" onclick="stopCDAudio()" title="Stop">
+                        <i data-lucide="square" class="size-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+    </main>
+
+   
+
+    <footer class="win-outset h-10 border-t-2 border-white p-1 flex items-center justify-between bg-gray-300 z-50 fixed bottom-0 left-0 right-0">
+        
+        <div class="relative h-full">
+            <button id="btn-start" type="button" class="win-outset win-button h-full flex items-center gap-1 px-2 border-2 border-white font-bold text-black" onclick="toggleStartMenu()">
+                <span class="text-base">❖</span>
+                <span>Start</span>
+            </button>
+
+            <div id="start-menu" class="win-outset p-0 absolute bottom-full left-3 mb-1 w-full min-w-[200px] hidden z-50 shadow-2xl flex bg-white/45 backdrop-blur-2xl start__menu">
+                <!-- <div class="bg-gradient-to-t from-blue-900 to-blue-600 w-8 flex items-end justify-center pb-2 text-white font-bold select-none tracking-wider">
+                    <span class="transform -rotate-90 origin-bottom whitespace-nowrap text-sm font-black uppercase tracking-widest text-gray-300">BDE95</span>
+                </div> -->
+                
+                <div class="flex-grow flex flex-col py-1 text-black font-sans font-normal text-xs ">
+                    <div class="px-3 py-2 hover:bg-blue-800 hover:text-white cursor-pointer flex items-center gap-2" onclick="openWindow('win-explorer'); toggleStartMenu();">
+                        <span>📁</span> <span class="font-medium">Programs</span>
+                    </div>
+                    <div class="px-3 py-2 hover:bg-blue-800 hover:text-white cursor-pointer flex items-center gap-2" onclick="openWindow('win-cdplayer'); toggleStartMenu();">
+                        <span>💿</span> <span class="font-medium">CD Player</span>
+                    </div>
+                    <a href="https://mail.bigdeskenergy.com/archive" target="_blank" class="px-3 py-2 hover:bg-blue-800 hover:text-white cursor-pointer flex items-center gap-2">
+                        <span>🌐</span> <span class="font-medium">View Archive</span>
+                    </a>
+                    <hr class="border-t border-gray-400 my-1 border-b border-white">
+                    <div class="px-3 py-2 hover:bg-blue-800 hover:text-white cursor-pointer flex items-center gap-2" onclick="alert('System Shutdown Initiated... Just kidding, keep building.'); toggleStartMenu();">
+                        <span>🛑</span> <span class="font-medium">Shut Down...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-grow mx-2 flex gap-1 h-full overflow-hidden" id="taskbar-apps">
+            <div id="task-win-main" class="win-inset bg-gray-100 flex items-center px-3 text-xs max-w-[150px] font-bold border border-gray-400 cursor-pointer" onclick="focusWindow('win-main')">
+                <span class="truncate">⚡ Big_Desk_Energy</span>
+            </div>
+        </div>
+
+        <div class="win-inset h-full px-3 flex items-center gap-2 border border-gray-400 bg-gray-200 text-xs font-mono text-black" id="os-clock">
+            00:00 PM
+        </div>
+    </footer>
+
+    
+
+    <script src="assets/js/win-start.js"></script>
+    <script src="assets/js/cd-player.js"></script>
+    <script src="assets/js/md-opener.js"></script>
+    <script src="assets/js/notepad.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initializes all icons across the page on first load
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
 </html>
