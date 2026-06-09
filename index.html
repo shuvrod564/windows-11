@@ -101,36 +101,11 @@
                 </div>
             </div>
             <div class="win__body p-4 bg-white min-h-[200px] font-mono text-xs flex flex-col gap-2">
-                <p class="text-gray-400">// Most Popular Content Repositories</p>
-                <?php
-                    $dir = "./assets/md/";
-                    if (is_dir($dir)){
-                        if ($dh = opendir($dir)){
-                            while (($file = readdir($dh)) !== false){
-                                // Skip system dots
-                                if ($file === '.' || $file === '..') {
-                                    continue;
-                                }
-                                
-                                // Construct path relative to root directory
-                                $filePath = $dir . $file;
-                                
-                                // Escape single quotes for HTML and JavaScript attributes safely
-                                $escapedFile = htmlspecialchars($file, ENT_QUOTES, 'UTF-8');
-                                $escapedPath = htmlspecialchars($filePath, ENT_QUOTES, 'UTF-8');
-                                
-                                // FIX: Wrapped JavaScript arguments inside escaped single quotes (\')
-                                echo '<a href="' . $escapedPath . '" onclick="openFileInNotepad(event, \'' . $escapedPath . '\', \'' . $escapedFile . '\')" class="text-blue-800 hover:underline flex justify-between">';
-                                echo '<span>📄 ' . $escapedFile . '</span> <span class="text-gray-400">Strategy</span></a>';
-                            }
-                            closedir($dh);
-                        }
-                    }
-                ?> 
+                <p class="text-gray-400">// Most Popular Content Repositories</p> 
+                <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'essays_culture.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 essays_culture.md</span> <span class="text-gray-400">Essays</span></a>
+                <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'milestones_log.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 milestones_log.md</span> <span class="text-gray-400">Milestones</span></a>
             </div>
         </div>
-        <!-- <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'essays_culture.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 essays_culture.md</span> <span class="text-gray-400">Essays</span></a>
-        <a href="assets/md/markdown-sample.md" onclick="openFileInNotepad(event, 'assets/md/markdown-sample.md', 'milestones_log.md')" class="text-blue-800 hover:underline flex justify-between"><span>📄 milestones_log.md</span> <span class="text-gray-400">Milestones</span></a> -->
 
         <!-- NOTEPAD::WINDOW -->
         <div id="win-notepad" class="win-outset win__surface w-full max-w-xl absolute hidden z-30 flex flex-col">
